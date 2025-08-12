@@ -1,24 +1,48 @@
-import logo from './logo.svg';
-import './App.css';
+// src/App.js
+import React, { useState } from 'react';
 
+import { DoctorProvider } from './contexts/DoctorContext';
+import { PatientProvider } from './contexts/PatientContext';
+
+
+import Sidebar from './components/Sidebar';
+import PatientList from './components/PatientList';
+import DoctorList from './components/DoctorList';
+import VisitList from './components/VisitList';
+import CalendarWithFixedDate from './components/CalendarWithFixedDate';
+import Appointments from './components/Appointments';
+import AppointmentCalendar from './components/AppointmentCalendar';
+
+import './styles.css';
 function App() {
+  const [section, setSection] = useState('dashboard');
+
+  const handleMenuSelect = (view) => {
+    setSection(view);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <DoctorProvider>
+      <PatientProvider>
+    <div style={{ display: 'flex', height: '100vh', fontFamily: 'Arial, sans-serif' }}>
+      <Sidebar onSelect={handleMenuSelect} currentSection={section} />
+
+      {/* Main content area */}
+      <div style={{ flex: 1, padding: '20px', overflowY: 'auto' }}>
+        {section === 'dashboard' && <h1>Dashboard</h1>}
+        {section === 'calendar' && <AppointmentCalendar />}
+        {section === 'people' && <CalendarWithFixedDate/>}
+        {section === 'sales' && <Appointments />}
+        {section === 'reports' && <AppointmentCalendar />}
+        {section === 'practiceManual' && <h1>Practice Manual</h1>}
+        {section === 'settings' && <h1>Settings</h1>}
+        {section === 'visits' && <VisitList />}
+        {section === 'doctors' && < DoctorList />}
+        {section === 'patients' && <PatientList />}
+      </div>
     </div>
+    </PatientProvider>
+    </DoctorProvider>
   );
 }
 
