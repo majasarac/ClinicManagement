@@ -10,9 +10,10 @@ import PatientList from './components/PatientList';
 import DoctorList from './components/DoctorList';
 import VisitList from './components/VisitList';
 import CalendarWithFixedDate from './components/CalendarWithFixedDate';
+
 import Appointments from './components/Appointments';
 import AppointmentCalendar from './components/AppointmentCalendar';
-
+import DoctorReportCalendar from './components/DoctorReportCalendar';
 import './styles.css';
 function App() {
   const [section, setSection] = useState('dashboard');
@@ -33,7 +34,7 @@ function App() {
         {section === 'calendar' && <AppointmentCalendar />}
         {section === 'people' && <CalendarWithFixedDate/>}
         {section === 'sales' && <Appointments />}
-        {section === 'reports' && <AppointmentCalendar />}
+        {section === 'reports' && <DoctorReportCalendar />}
         {section === 'practiceManual' && <h1>Practice Manual</h1>}
         {section === 'settings' && <h1>Settings</h1>}
         {section === 'visits' && <VisitList />}

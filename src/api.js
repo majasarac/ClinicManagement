@@ -39,6 +39,12 @@ export const getVisitsByPeriod= async(startDate, endDate)=>{
     }  });
   return response.data;
    };
+   export const getVisitsForDoctor = async(doctorId)=>{
+     console.log("trazimo preglede tog doktora", doctorId);
+    const response = await axios.get(`${API_URL}/visits/forDoctor?doctorId=11`);
+        console.log("vraceni pregledi tog doktora", doctorId);
+    return response.data;
+   };
 
 // Function to create a new visit
 export const createVisit = async (patientId, doctorId, visit) => {
@@ -51,7 +57,20 @@ export const createVisit = async (patientId, doctorId, visit) => {
   const response = await axios.post('http://localhost:8080/visits', payload);
   return response.data;
 };
+//funtion to cancel visit
+export const cancelVisit= async(visitId)=>{
+    const response = await axios.put(`${API_URL}/visits/${visitId}/status`,{status:'CANCELLED'});
+    return response.data;
 
+
+}
+//funtion to complete visit
+export const completeVisit= async(visitId)=>{
+    const response = await axios.put(`${API_URL}/visits/${visitId}/status`,{status:'COMPLETED'});
+    return response.data;
+
+
+}
 // Function to get all docotrs
 export const getDoctors = async () => {
     const response = await axios.get(`${API_URL}/doctors`);

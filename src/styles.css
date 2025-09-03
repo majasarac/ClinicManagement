@@ -99,8 +99,20 @@ input[placeholder="Search by First Name"] {
 .rbc-today{
      background-color:#e0f3f8;
 }
-sidebar{
+.rbc-agenda{
     background-color: #b5d9f2;
+}
+.lunch-slot {
+  background-color: rgba(255, 0, 0, 0.2) !important;
+}
+.slot-weekend {
+  background-color: #d3d3d3; /* light gray for weekends */
+}
+.slot-night {
+  background-color: #233462; /* dark color for nights */
+}
+.slot-lunch {
+  background-color: #ffcc66; /* yellow for lunch */
 }
 /* Responsive Design */
 @media (max-width: 600px) {
